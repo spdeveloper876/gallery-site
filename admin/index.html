@@ -4,18 +4,30 @@
     <meta charset="utf-8" />
     <title>Admin</title>
 
-    <!-- Redirect fix (HEAD me hona zaroori hai) -->
+    <!-- Netlify Identity Widget (MOST IMPORTANT) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <script>
+      // Handle invite & recovery tokens
       if (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token")) {
         window.location.replace("/admin/" + window.location.hash);
       }
+
+      // Auto open login widget if not logged in
+      window.netlifyIdentity = window.netlifyIdentity || {};
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.init();
+          window.netlifyIdentity.open();
+        }
+      });
     </script>
   </head>
 
   <body>
     <div id="nc-root"></div>
 
-    <!-- CMS script (body end me best hai) -->
+    <!-- Netlify CMS -->
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   </body>
 </html>
