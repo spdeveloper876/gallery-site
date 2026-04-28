@@ -3,15 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <title>Admin</title>
+
+    <!-- Redirect fix (HEAD me hona zaroori hai) -->
+    <script>
+      if (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token")) {
+        window.location.replace("/admin/" + window.location.hash);
+      }
+    </script>
   </head>
+
   <body>
     <div id="nc-root"></div>
 
+    <!-- CMS script (body end me best hai) -->
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-	<script>
-  if (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token")) {
-    window.location.href = "/admin/" + window.location.hash;
-  }
-</script>
   </body>
 </html>
